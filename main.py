@@ -20,12 +20,14 @@ class Task:
 
     def completed_task(self):
         completed_task_name = input("Введите выполненную задачу: ")
+        task_check = False # Переменная-флаг для отслеживания нахождения задачи
         for task in self.task_deadline: # Для каждого элемента (в виде словаря) из списка self.task_deadline будет проверка
             if task['task'] == completed_task_name: # Если значение по ключу task равно введенной пользователем задаче, то меняется статус
                 task['status'] == "Выполнено"
                 print(f'{task["task"]} - выполнено') # {task["task"]} - для элемента {task}, увовлетворившего условие выше, выводится значение по ключу ["task"]
                 self.task_deadline.remove(task) # Найденная задача убирается
-            else:
+                task_check = True # Задача найдена
+            if not task_check:
                 print('Задача не найдена')
 
     def all_task(self):
